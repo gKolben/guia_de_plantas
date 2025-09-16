@@ -1,16 +1,54 @@
-# meu_primeiro_app
+# 🌿 Guia de Plantas
 
-A new Flutter project.
+![Flutter](https://img.shields.io/badge/Flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white)
 
-## Getting Started
+Um aplicativo de guia de cuidados para plantas de apartamento, desenvolvido como um projeto de faculdade para a disciplina de Desenvolvimento Mobile.
 
-This project is a starting point for a Flutter application.
+## 🎯 Objetivo do Projeto
 
-A few resources to get you started if this is your first Flutter project:
+O objetivo deste app é fornecer um guia rápido e prático para que usuários iniciantes no mundo da jardinagem possam cuidar de suas plantas, com informações sobre rega, luz, substrato e fertilizantes caseiros.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## ✨ Status Atual
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+O projeto está atualmente na **Fase 1**, que implementa o fluxo inicial do aplicativo, conforme os requisitos da disciplina.
+
+### Funcionalidades Implementadas
+- [x] **Launch Screen Nativa:** Tela de abertura profissional.
+- [x] **Splash Screen:** Tela de transição com a identidade do app.
+- [x] **Onboarding Interativo:** Um carrossel de 2 páginas para apresentar o app aos novos usuários.
+- [x] **Navegação Estruturada:** Uso de rotas nomeadas para um fluxo de navegação claro e unidirecional.
+
+## 🛠️ Tecnologias Utilizadas
+
+* **Flutter:** Framework principal para o desenvolvimento da interface e lógica.
+* **Dart:** Linguagem de programação utilizada pelo Flutter.
+
+## 🚀 Como Executar o Projeto Localmente
+
+Para rodar este projeto no seu computador, siga os passos abaixo:
+
+1.  **Pré-requisitos:**
+    * Você precisa ter o [Flutter SDK](https://flutter.dev/docs/get-started/install) instalado e configurado corretamente.
+    * Você precisa ter o Git instalado.
+
+2.  **Clone o Repositório:**
+    ```bash
+    git clone [https://github.com/seu-usuario/guia_de_plantas.git](https://github.com/seu-usuario/guia_de_plantas.git)
+    ```
+    *(Lembre-se de substituir `seu-usuario` pelo seu nome de usuário do GitHub)*
+
+3.  **Acesse a Pasta do Projeto:**
+    ```bash
+    cd guia_de_plantas
+    ```
+
+4.  **Instale as Dependências:**
+    ```bash
+    flutter pub get
+    ```
+
+5.  **Execute o Aplicativo:**
+    Certifique-se de que um emulador está rodando ou um dispositivo físico está conectado e então rode:
+    ```bash
+    flutter run
+    ```
