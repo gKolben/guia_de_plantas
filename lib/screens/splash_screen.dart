@@ -1,14 +1,31 @@
+/*
+ * SplashScreen - Tela de Carregamento Inicial
+ * 
+ * Esta é a primeira tela que aparece quando o aplicativo é aberto.
+ * Características principais:
+ * - Exibe o logo do aplicativo (icon.png)
+ * - Mostra um indicador de carregamento circular verde
+ * - Permanece visível por 3 segundos
+ * - Navega automaticamente para a tela de onboarding
+ * 
+ * Funcionalidades:
+ * - Usa StatefulWidget para gerenciar o estado do temporizador
+ * - Implementa initState() para configurar a navegação temporizada
+ * - Usa Timer para controlar o tempo de exibição
+ * - Utiliza pushReplacementNamed para evitar retorno à splash screen
+ */
+
 import 'dart:async'; // Precisamos disso para o Timer
 import 'package:flutter/material.dart';
 
-class SplashScreen extends StatefulWidget {
-  const SplashScreen({super.key});
+class SplashScreen extends StatefulWidget { // StatefulWidget para gerenciar estado
+  const SplashScreen({super.key}); // Construtor padrão
 
   @override
-  State<SplashScreen> createState() => _SplashScreenState();
+  State<SplashScreen> createState() => _SplashScreenState(); // Cria o estado associado
 }
 
-class _SplashScreenState extends State<SplashScreen> {
+class _SplashScreenState extends State<SplashScreen> { // Estado da SplashScreen
 
   // Esta função é chamada uma única vez quando a tela é criada
   @override
@@ -32,7 +49,7 @@ class _SplashScreenState extends State<SplashScreen> {
           children: [
             // Mostra a imagem do ícone que colocamos na pasta assets
             Image.asset(
-              'assets/icon.png',
+              'assets/icon.png', // Caminho da imagem
               width: 100, // Define uma largura para a imagem
               height: 100, // Define uma altura para a imagem
             ),
