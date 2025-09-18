@@ -55,7 +55,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> { // Estado da tela
               child: ElevatedButton(
                 onPressed: () {
                   // Requisito: Navegação por substituição para o fluxo unidirecional [cite: 40]
-                  Navigator.pushReplacementNamed(context, '/home');
+                  Navigator.pushReplacementNamed(context, '/home'); // Vai para a tela principal (home)
                 },
                 style: ElevatedButton.styleFrom(
                   minimumSize: const Size(double.infinity, 50), // Botão largo
