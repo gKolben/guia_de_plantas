@@ -9,7 +9,7 @@ import 'package:flutter/material.dart'; // Importa o pacote Flutter para widgets
 import 'package:guia_de_plantas/screens/home_screen.dart'; // Importa a tela principal (home)
 import 'package:guia_de_plantas/screens/onboarding_screen.dart'; // Importa a tela de onboarding
 import 'package:guia_de_plantas/screens/splash_screen.dart'; // Importa a tela de splash
-
+import 'package:guia_de_plantas/theme/app_colors.dart'; // Importa as cores do aplicativo
 void main() { // Ponto de entrada do aplicativo
   runApp(const MeuApp()); // Usa o widget MeuApp como raiz do aplicativo
 }
@@ -22,9 +22,37 @@ class MeuApp extends StatelessWidget { // Converte para StatelessWidget
     return MaterialApp( // Usa MaterialApp para configurar o tema e as rotas
       title: 'Guia de Plantas', // Título do aplicativo
       debugShowCheckedModeBanner: false, // Remove a faixa de debug
+
       theme: ThemeData( // Define o tema do aplicativo
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.green), // Esquema de cores baseado em verde
-        useMaterial3: true, // Habilita Material Design 3
+        scaffoldBackgroundColor: AppColors.background, // Fundo branco puro para todas as telas
+    
+    colorScheme: ColorScheme.fromSeed(
+      seedColor: AppColors.primaryGreen,
+      primary: AppColors.primaryGreen,
+    ),
+
+    // Tema da AppBar com estilo iOS
+    appBarTheme: const AppBarTheme(
+      backgroundColor: AppColors.background, // Fundo branco
+      foregroundColor: AppColors.textDark, // Texto e ícones escuros
+      elevation: 0, // Sem sombra
+      centerTitle: true, // Título centralizado
+      titleTextStyle: TextStyle(
+        fontSize: 18,
+        fontWeight: FontWeight.bold,
+        color: AppColors.textDark,
+      ),
+    ),
+
+    // Animações de transição de página no estilo iOS
+    pageTransitionsTheme: const PageTransitionsTheme(
+      builders: {
+        TargetPlatform.android: CupertinoPageTransitionsBuilder(),
+        TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
+      },
+    ),
+
+    useMaterial3: true,
       ),
       initialRoute: '/splash', // Rota inicial é a tela de splash
       routes: { // Define as rotas do aplicativo

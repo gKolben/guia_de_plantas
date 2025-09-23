@@ -15,23 +15,31 @@
 
 import 'package:flutter/material.dart';
 
-class HomeScreen extends StatelessWidget { // Converte para StatelessWidget
-  const HomeScreen({super.key}); // Construtor padrão
+class HomeScreen extends StatelessWidget {
+  const HomeScreen({super.key});
 
   @override
-  Widget build(BuildContext context) { // Constrói a interface da tela inicial
-    return Scaffold( // Estrutura básica da tela
-      // A barra de título do aplicativo
-      appBar: AppBar( // Barra de aplicativo no topo
-        title: const Text('Minhas Plantas'), // Título da barra
-        backgroundColor: Colors.green[100], // Uma cor suave para a barra
-        elevation: 1, // Uma leve sombra
+  Widget build(BuildContext context) {
+    return Scaffold(
+      // Esta AppBar vai pegar o estilo automaticamente do nosso appBarTheme
+      appBar: AppBar(
+        title: const Text('Guia de Plantas'),
       ),
-      body: const Center( // Corpo da tela centralizado
-        child: Text( // Texto de boas-vindas
-          'Bem-vindo ao seu guia de plantas!',
-          style: TextStyle(fontSize: 18), // Tamanho da fonte
-        ),
+      // Substituição do Center por um ListView para preparar para a lista de plantas
+      body: ListView(
+        // Padding para dar um respiro nas bordas
+        padding: const EdgeInsets.all(16.0),
+        children: const [
+          // Um texto de exemplo para ver o layout funcionando
+          Text(
+            'Minhas Plantas',
+            style: TextStyle(
+              fontSize: 22,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          // Aqui é onde a nossa lista de plantas vai entrar no futuro
+        ],
       ),
     );
   }
