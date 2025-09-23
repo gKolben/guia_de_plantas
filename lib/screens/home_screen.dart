@@ -14,6 +14,7 @@
  */
 
 import 'package:flutter/material.dart';
+import 'package:guia_de_plantas/theme/app_colors.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -21,9 +22,18 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // Esta AppBar vai pegar o estilo automaticamente do nosso appBarTheme
+      // Esta AppBar vai pegar o estilo automaticamente do appBarTheme
       appBar: AppBar(
-        title: const Text('Guia de Plantas'),
+        backgroundColor: AppColors.primaryGreen, // Define a cor de fundo verde
+        foregroundColor: AppColors.textLight, // Define a cor do texto para branco
+        title: const Text(
+          'Guia de Plantas',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 20,
+          color: AppColors.textLight,
+          ),
+        ),
       ),
       // Substituição do Center por um ListView para preparar para a lista de plantas
       body: ListView(

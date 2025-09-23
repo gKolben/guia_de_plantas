@@ -15,49 +15,57 @@
  * - Utiliza pushReplacementNamed para evitar retorno à splash screen
  */
 
-import 'dart:async'; // Precisamos disso para o Timer
+// lib/screens/splash_screen.dart
+import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart'; // Importa o SharedPreferences
 
-class SplashScreen extends StatefulWidget { // StatefulWidget para gerenciar estado
-  const SplashScreen({super.key}); // Construtor padrão
+class SplashScreen extends StatefulWidget {
+  const SplashScreen({super.key});
 
   @override
-  State<SplashScreen> createState() => _SplashScreenState(); // Cria o estado associado
+  State<SplashScreen> createState() => _SplashScreenState();
 }
 
-class _SplashScreenState extends State<SplashScreen> { // Estado da SplashScreen
+class _SplashScreenState extends State<SplashScreen> {
 
-  // Esta função é chamada uma única vez quando a tela é criada
   @override
   void initState() {
     super.initState();
-    // Inicia um temporizador de 3 segundos
-    Timer(const Duration(seconds: 3), () {
-      // Após 3 segundos, navega para a tela de onboarding
-      // Usamos 'pushReplacementNamed' para que o usuário não possa voltar para a splash screen [cite: 126, 128]
-      Navigator.pushReplacementNamed(context, '/onboarding');
-    });
+    _checkOnboardingStatus(); // Chama nossa nova função de verificação
+  }
+  
+  Future<void> _checkOnboardingStatus() async {
+    final prefs = await SharedPreferences.getInstance();
+    final onboardingCompleted = prefs.getBool('onboarding_completed') ?? false;
+
+    await Future.delayed(const Duration(seconds: 2));
+
+    if (mounted) {
+      if (onboardingCompleted) {
+        Navigator.pushReplacementNamed(context, '/home');
+      } else {
+        Navigator.pushReplacementNamed(context, '/onboarding');
+      }
+    }
   }
 
-  // Esta função constrói a interface da tela
   @override
   Widget build(BuildContext context) {
-    return Scaffold( // Estrutura base da página [cite: 43, 143]
-      body: Center( // Centraliza todo o conteúdo
+    return Scaffold(
+      body: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center, // Alinha os itens no centro verticalmente
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // Mostra a imagem do ícone que colocamos na pasta assets
             Image.asset(
-              'assets/icon.png', // Caminho da imagem
-              width: 100, // Define uma largura para a imagem
-              height: 100, // Define uma altura para a imagem
+              'assets/icon.png',
+              width: 100,
+              height: 100,
             ),
-            const SizedBox(height: 24), // Cria um espaço vertical entre a imagem e o indicador
-            // Indicador de progresso circular [cite: 123]
+            const SizedBox(height: 24),
             const CircularProgressIndicator(
-              strokeWidth: 2, // Deixa a linha do círculo mais fina
-              valueColor: AlwaysStoppedAnimation<Color>(Colors.green), // Muda a cor para verde
+              strokeWidth: 2,
+              valueColor: AlwaysStoppedAnimation<Color>(Colors.green),
             ),
           ],
         ),

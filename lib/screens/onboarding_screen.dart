@@ -1,18 +1,21 @@
+// lib/screens/onboarding_screen.dart
 import 'package:flutter/material.dart';
-import 'package:guia_de_plantas/widgets/onboarding_page.dart'; // Importa nosso "molde"
-import 'package:guia_de_plantas/theme/app_colors.dart'; // Importa as cores do aplicativo
+import 'package:guia_de_plantas/theme/app_colors.dart';
+import 'package:guia_de_plantas/widgets/onboarding_page.dart';
+import 'package:guia_de_plantas/widgets/dots_indicator.dart'; // Importa nosso novo widget
+import 'package:shared_preferences/shared_preferences.dart'; // Importa o SharedPreferences
 
-class OnboardingScreen extends StatefulWidget { // StatefulWidget para gerenciar estado
-  const OnboardingScreen({super.key}); // Construtor padrão
+class OnboardingScreen extends StatefulWidget { // 
+  const OnboardingScreen({super.key});
 
   @override
-  State<OnboardingScreen> createState() => _OnboardingScreenState(); // Cria o estado associado
+  State<OnboardingScreen> createState() => _OnboardingScreenState();
 }
 
-class _OnboardingScreenState extends State<OnboardingScreen> { // Estado da tela de onboarding
-  final PageController _pageController = PageController(); // Controlador para o PageView, exigido pelo projeto
+class _OnboardingScreenState extends State<OnboardingScreen> {
+  final PageController _pageController = PageController();
+  int _currentPage = 0; // Variável para guardar a página atual [cite: 821, 836]
 
-  // Lista com os dados de cada página do onboarding
   final List<Map<String, String>> _pages = [
     {
       "image": "assets/icon.png",
@@ -25,65 +28,76 @@ class _OnboardingScreenState extends State<OnboardingScreen> { // Estado da tela
       "description": "Aprenda sobre luz, água e substrato ideais para cada tipo de planta."
     }
   ];
+  
+  // Função para salvar que o onboarding foi concluído
+  Future<void> _finishOnboarding() async {
+    final prefs = await SharedPreferences.getInstance(); // Pega a instância do SharedPreferences [cite: 204]
+    await prefs.setBool('onboarding_completed', true); // Salva o valor 'true' [cite: 204, 271]
+    
+    if (mounted) { // Checa se o widget ainda está na tela [cite: 205]
+      Navigator.pushReplacementNamed(context, '/home'); // Navega para a home [cite: 206]
+    }
+  }
 
   @override
-  Widget build(BuildContext context) { // Constrói a interface da tela de onboarding
+  Widget build(BuildContext context) {
     return Scaffold(
-      // Requisito: Usar SafeArea para evitar que o conteúdo fique atrás de notchs e barras [cite: 43]
       body: SafeArea(
-        child: Column( // Usando Column para empilhar o PageView e o botão
-          children: [ // Nosso layout vertical
-            Expanded( // Expande para preencher o espaço disponível
-              // Requisito: Usar PageView para o carrossel com rolagem por gesto 
-              child: PageView.builder( 
-                controller: _pageController, // Controlador para gerenciar páginas
-                itemCount: _pages.length, // Número de páginas
-                itemBuilder: (context, index) { // Constrói cada página
-                  final pageData = _pages[index]; // Dados da página atual
-                  // Usando nosso widget reutilizável
-                  return OnboardingPage( // Nosso "molde"
-                    imagePath: pageData["image"]!,// Caminho da imagem
-                    title: pageData["title"]!, // Título da página
-                    description: pageData["description"]!, // Descrição da página
+        child: Column(
+          children: [
+            Expanded(
+              child: PageView.builder(
+                controller: _pageController,
+                itemCount: _pages.length,
+                // onPageChanged é chamado toda vez que o usuário arrasta para uma nova página
+                onPageChanged: (page) {
+                  setState(() {
+                    _currentPage = page; // Atualiza a página atual [cite: 821, 913]
+                  });
+                },
+                itemBuilder: (context, index) {
+                  final pageData = _pages[index];
+                  return OnboardingPage(
+                    imagePath: pageData["image"]!,
+                    title: pageData["title"]!,
+                    description: pageData["description"]!,
                   );
                 },
               ),
             ),
-            // Botão para pular ou finalizar o onboarding
-                        Padding(
-              padding: const EdgeInsets.all(24.0), // Espaçamento ao redor do botão
-              child: Container( // Contêiner para estilizar o botão
-                width: double.infinity, // Largura máxima
-                decoration: BoxDecoration( // Decoração do contêiner
+            // Indicador de progresso (pontinhos)
+            DotsIndicator(
+              totalDots: _pages.length,
+              currentIndex: _currentPage,
+            ),
+            const SizedBox(height: 24), // Espaçamento
+            
+            // Botão "Começar"
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24.0),
+              child: Container(
+                width: double.infinity,
+                decoration: BoxDecoration(
                   gradient: const LinearGradient(
-                    // Usando um verde um pouco mais escuro para começar o gradiente
-                    colors: [Color(0xFF388E3C), AppColors.primaryGreen], // Gradiente do verde escuro para o verde principal
-                    begin: Alignment.centerLeft, // Início do gradiente
-                    end: Alignment.centerRight, // Fim do gradiente
+                    colors: [AppColors.primaryGreenDark, AppColors.primaryGreen],
+                    begin: Alignment.centerLeft,
+                    end: Alignment.centerRight,
                   ),
-                  borderRadius: BorderRadius.circular(12), // Bordas arredondadas
+                  borderRadius: BorderRadius.circular(12),
                 ),
-                child: ElevatedButton( // Botão elevado
-                  onPressed: () {
-                    Navigator.pushReplacementNamed(context, '/home'); // Navega para a tela principal e remove a de onboarding da pilha
-                  },
-                  style: ElevatedButton.styleFrom( // Estilo do botão
-                    backgroundColor: Colors.transparent, // Deixa o botão transparente
-                    shadowColor: Colors.transparent, // Sem sombra
-                    minimumSize: const Size(double.infinity, 50), // Largura máxima e altura fixa
-                    padding: const EdgeInsets.symmetric(vertical: 16), // Espaçamento interno vertical
+                child: ElevatedButton(
+                  onPressed: _finishOnboarding, // Chama a função para salvar e navegar
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.transparent,
+                    shadowColor: Colors.transparent,
+                    minimumSize: const Size(double.infinity, 50),
+                    padding: const EdgeInsets.symmetric(vertical: 16),
                   ),
-                  child: const Text( // Texto do botão
-                    'Começar',
-                    style: TextStyle( // Estilo do texto
-                      color: AppColors.textLight,
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold, // Negrito
-                    ),
-                  ),
+                  child: const Text('Começar', style: TextStyle(color: AppColors.textLight, fontSize: 18, fontWeight: FontWeight.bold)),
                 ),
               ),
             ),
+             const SizedBox(height: 24),
           ],
         ),
       ),

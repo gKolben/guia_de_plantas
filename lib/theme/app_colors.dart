@@ -14,4 +14,10 @@ class AppColors {
   
   // Cores Neutras
   static const Color grey = Color(0xFFCCCCCC);
+
+  // Cores Secundárias
+  static const Color primaryGreenDark = Color(0xFF388E3C);
+
+  // Cores de Erro
+  static const Color errorRed = Color(0xFFD32F2F);
 }
