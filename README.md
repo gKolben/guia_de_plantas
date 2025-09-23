@@ -10,12 +10,14 @@ O objetivo deste app é fornecer um guia rápido e prático para que usuários i
 
 ## ✨ Status Atual
 
-O projeto está atualmente na **Fase 1**, que implementa o fluxo inicial do aplicativo, conforme os requisitos da disciplina.
+O projeto avançou para a **Fase 2**, focada no refinamento da experiência do usuário (UX) e na implementação de persistência de dados para uma navegação mais inteligente, seguindo os guias didáticos da disciplina.
 
 ### Funcionalidades Implementadas
-- [x] **Launch Screen Nativa:** Tela de abertura profissional.
-- [x] **Splash Screen:** Tela de transição com a identidade do app.
-- [x] **Onboarding Interativo:** Um carrossel de 2 páginas para apresentar o app aos novos usuários.
+- [x] **Tema e UI Customizados:** Implementação de uma paleta de cores centralizada, tema com inspiração iOS e componentes estilizados.
+- [x] **Launch Screen Nativa:** Tela de abertura profissional e customizada.
+- [x] **Splash Screen Inteligente:** Tela de transição que verifica se o usuário já viu a apresentação.
+- [x] **Onboarding Interativo:** Um carrossel de 2 páginas com indicador de progresso (`DotsIndicator`) para guiar o usuário.
+- [x] **Persistência de Dados (`SharedPreferences`):** O app "lembra" se o onboarding já foi concluído, otimizando o fluxo para usuários recorrentes.
 - [x] **Navegação Estruturada:** Uso de rotas nomeadas para um fluxo de navegação claro e unidirecional.
 
 ## 🛠️ Tecnologias Utilizadas
