@@ -13,36 +13,50 @@ O objetivo deste app é fornecer um guia rápido e prático para que usuários i
 O projeto está atualmente na **Fase 1**, que implementa o fluxo inicial do aplicativo, conforme os requisitos da disciplina.
 
 ### Funcionalidades Implementadas
-- [x] **Launch Screen Nativa:** Tela de abertura profissional.
-- [x] **Splash Screen:** Tela de transição com a identidade do app.
-- [x] **Onboarding Interativo:** Um carrossel de 2 páginas para apresentar o app aos novos usuários.
+
+- [x] **Launch Screen Nativa:** Tela de abertura profissional com flutter_native_splash.
+- [x] **Splash Screen Inteligente:** Decisão de navegação baseada no estado do onboarding com Future.microtask e SharedPreferences.
+- [x] **Onboarding Completo:** 4 páginas estratégicas (Welcome, How it Works, Consent, Go to Access) com controles contextuais.
+- [x] **DotsIndicator:** Indicador visual de progresso oculto na última página para melhor UX.
+- [x] **Controles de Navegação Contextuais:** Botões Pular, Voltar e Avançar com regras de visibilidade inteligentes.
+- [x] **Persistência Local:** SharedPreferences para armazenar onboarding_completed e marketing_consent.
+- [x] **Página de Consentimento:** Coleta transparente de consentimento para marketing com botão desabilitado até escolha válida.
 - [x] **Navegação Estruturada:** Uso de rotas nomeadas para um fluxo de navegação claro e unidirecional.
+- [x] **Acessibilidade:** Princípios de desabilitar > esconder para feedback visual adequado.
 
 ## 🛠️ Tecnologias Utilizadas
 
-* **Flutter:** Framework principal para o desenvolvimento da interface e lógica.
-* **Dart:** Linguagem de programação utilizada pelo Flutter.
+- **Flutter:** Framework principal para o desenvolvimento da interface e lógica.
+- **Dart:** Linguagem de programação utilizada pelo Flutter.
+- **SharedPreferences:** Para persistência local de dados do usuário.
+- **DotsIndicator:** Para indicador visual de progresso no onboarding.
+- **flutter_native_splash:** Para tela de splash nativa personalizada.
 
 ## 🚀 Como Executar o Projeto Localmente
 
 Para rodar este projeto no seu computador, siga os passos abaixo:
 
 1.  **Pré-requisitos:**
-    * Você precisa ter o [Flutter SDK](https://flutter.dev/docs/get-started/install) instalado e configurado corretamente.
-    * Você precisa ter o Git instalado.
+
+    - Você precisa ter o [Flutter SDK](https://flutter.dev/docs/get-started/install) instalado e configurado corretamente.
+    - Você precisa ter o Git instalado.
 
 2.  **Clone o Repositório:**
+
     ```bash
     git clone [https://github.com/seu-usuario/guia_de_plantas.git](https://github.com/seu-usuario/guia_de_plantas.git)
     ```
-    *(Lembre-se de substituir `seu-usuario` pelo seu nome de usuário do GitHub)*
+
+    _(Lembre-se de substituir `seu-usuario` pelo seu nome de usuário do GitHub)_
 
 3.  **Acesse a Pasta do Projeto:**
+
     ```bash
     cd guia_de_plantas
     ```
 
 4.  **Instale as Dependências:**
+
     ```bash
     flutter pub get
     ```
