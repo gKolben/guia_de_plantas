@@ -1,3 +1,32 @@
+/*
+ * OnboardingPage - Widget de Página para Onboarding
+ * 
+ * Este widget representa uma página individual do carrossel de onboarding.
+ * Cada página contém:
+ * - Uma imagem com bordas arredondadas
+ * - Um título em destaque
+ * - Uma descrição explicativa
+ * - Funcionalidade de consentimento para marketing (quando aplicável)
+ * 
+ * Parâmetros requeridos:
+ * - imagePath: caminho da imagem a ser exibida
+ * - title: título da página
+ * - description: texto descritivo da página
+ * - type: tipo da página (welcome, how_it_works, consent, go_to_access)
+ * 
+ * Parâmetros opcionais:
+ * - onConsentChanged: callback para mudanças no consentimento
+ * - marketingConsent: estado atual do consentimento
+ * 
+ * Características visuais:
+ * - Padding uniforme de 24px
+ * - Imagem com altura fixa de 250px
+ * - Título em fonte maior e negrito
+ * - Descrição em fonte padrão
+ * - Espaçamentos verticais entre elementos
+ * - Material 3 theming
+ */
+
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

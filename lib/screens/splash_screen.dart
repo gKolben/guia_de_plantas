@@ -1,3 +1,20 @@
+/*
+ * SplashScreen - Tela de Carregamento Inicial
+ * 
+ * Esta é a primeira tela que aparece quando o aplicativo é aberto.
+ * Características principais:
+ * - Exibe o logo do aplicativo (icon.png)
+ * - Mostra um indicador de carregamento circular verde
+ * - Navegação inteligente baseada no estado do onboarding
+ * - Navega automaticamente para a tela apropriada
+ * 
+ * Funcionalidades:
+ * - Usa Future.microtask para navegação assíncrona segura
+ * - Verifica onboarding_completed via SharedPreferences
+ * - Implementa tratamento de erros com fallback
+ * - Utiliza pushReplacementNamed para evitar retorno à splash screen
+ */
+
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';

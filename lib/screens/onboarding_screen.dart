@@ -1,4 +1,6 @@
+// lib/screens/onboarding_screen.dart
 import 'package:flutter/material.dart';
+import 'package:guia_de_plantas/theme/app_colors.dart';
 import 'package:guia_de_plantas/widgets/onboarding_page.dart';
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:shared_preferences/shared_preferences.dart';

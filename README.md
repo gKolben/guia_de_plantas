@@ -10,10 +10,11 @@ O objetivo deste app é fornecer um guia rápido e prático para que usuários i
 
 ## ✨ Status Atual
 
-O projeto está atualmente na **Fase 1**, que implementa o fluxo inicial do aplicativo, conforme os requisitos da disciplina.
+O projeto avançou para a **Fase 2**, focada no refinamento da experiência do usuário (UX) e na implementação de persistência de dados para uma navegação mais inteligente, seguindo os guias didáticos da disciplina.
 
 ### Funcionalidades Implementadas
 
+- [x] **Tema e UI Customizados:** Implementação de uma paleta de cores centralizada, tema com inspiração iOS e componentes estilizados.
 - [x] **Launch Screen Nativa:** Tela de abertura profissional com flutter_native_splash.
 - [x] **Splash Screen Inteligente:** Decisão de navegação baseada no estado do onboarding com Future.microtask e SharedPreferences.
 - [x] **Onboarding Completo:** 4 páginas estratégicas (Welcome, How it Works, Consent, Go to Access) com controles contextuais.
