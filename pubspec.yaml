@@ -1,15 +1,17 @@
 name: guia_de_plantas
 description: "A new Flutter project."
-publish_to: 'none'
+publish_to: "none"
 version: 1.0.0+1
 
 environment:
-  sdk: '>=3.9.2 <4.0.0'
+  sdk: ">=3.9.2 <4.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.8
+  shared_preferences: ^2.2.2
+  dots_indicator: ^3.0.0
 
 dev_dependencies:
   flutter_test:
